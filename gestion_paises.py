@@ -210,3 +210,62 @@ def mostrar_pais(pais):
     """Muestra los datos de un país formateado."""
     print(f"  Nombre: {pais['nombre']} | Población: {pais['poblacion']:,} | Superficie: {pais['superficie']:,} km² | Continente: {pais['continente']}")
 
+# MENÚ PRINCIPAL
+
+def mostrar_menu():
+    print("\n========================================")
+    print("   GESTIÓN DE DATOS DE PAÍSES")
+    print("========================================")
+    print("1. Agregar país")
+    print("2. Actualizar país")
+    print("3. Buscar país por nombre")
+    print("4. Filtrar por continente")
+    print("5. Filtrar por rango de población")
+    print("6. Filtrar por rango de superficie")
+    print("7. Ordenar países")
+    print("8. Mostrar estadísticas")
+    print("9. Mostrar todos los países")
+    print("0. Salir")
+    print("========================================")
+
+
+def main():
+    paises = cargar_paises()
+    print(f"Se cargaron {len(paises)} países desde el archivo.")
+
+    while True:
+        mostrar_menu()
+        opcion = input("Elegí una opción: ").strip()
+
+        if opcion == "1":
+            agregar_pais(paises)
+        elif opcion == "2":
+            actualizar_pais(paises)
+        elif opcion == "3":
+            buscar_pais(paises)
+        elif opcion == "4":
+            filtrar_por_continente(paises)
+        elif opcion == "5":
+            filtrar_por_poblacion(paises)
+        elif opcion == "6":
+            filtrar_por_superficie(paises)
+        elif opcion == "7":
+            ordenar_paises(paises)
+        elif opcion == "8":
+            mostrar_estadisticas(paises)
+        elif opcion == "9":
+            if paises:
+                print("\n--- TODOS LOS PAÍSES ---")
+                for p in paises:
+                    mostrar_pais(p)
+            else:
+                print("No hay países cargados.")
+        elif opcion == "0":
+            print("¡Hasta luego!")
+            break
+        else:
+            print("Opción inválida. Intentá de nuevo.")
+
+
+if __name__ == "__main__":
+    main()
