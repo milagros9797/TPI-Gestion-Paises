@@ -39,3 +39,69 @@ def guardar_paises(paises):
         for pais in paises:
             escritor.writerow(pais)
     print("Datos guardados correctamente.")
+
+# FUNCIONES DE GESTIÓN
+
+def agregar_pais(paises):
+    """Agrega un nuevo país a la lista."""
+    print("\n--- AGREGAR PAÍS ---")
+    nombre = input("Nombre del país: ").strip()
+    if not nombre:
+        print("Error: el nombre no puede estar vacío.")
+        return
+
+    for p in paises:
+        if p["nombre"].lower() == nombre.lower():
+            print("Error: ese país ya existe.")
+            return
+
+    try:
+        poblacion = int(input("Población: "))
+        superficie = int(input("Superficie en km²: "))
+    except ValueError:
+        print("Error: población y superficie deben ser números enteros.")
+        return
+
+    continente = input("Continente: ").strip()
+    if not continente:
+        print("Error: el continente no puede estar vacío.")
+        return
+
+    pais = {
+        "nombre": nombre,
+        "poblacion": poblacion,
+        "superficie": superficie,
+        "continente": continente
+    }
+    paises.append(pais)
+    guardar_paises(paises)
+    print(f"País '{nombre}' agregado correctamente.")
+
+
+def actualizar_pais(paises):
+    """Actualiza población y superficie de un país existente."""
+    print("\n--- ACTUALIZAR PAÍS ---")
+    nombre = input("Nombre del país a actualizar: ").strip()
+    for pais in paises:
+        if pais["nombre"].lower() == nombre.lower():
+            try:
+                pais["poblacion"] = int(input(f"Nueva población (actual: {pais['poblacion']}): "))
+                pais["superficie"] = int(input(f"Nueva superficie (actual: {pais['superficie']}): "))
+                guardar_paises(paises)
+                print("País actualizado correctamente.")
+            except ValueError:
+                print("Error: ingresá valores numéricos válidos.")
+            return
+    print("País no encontrado.")
+
+
+def buscar_pais(paises):
+    """Busca un país por nombre (parcial o exacto)."""
+    print("\n--- BUSCAR PAÍS ---")
+    nombre = input("Ingresá el nombre (o parte del nombre): ").strip().lower()
+    resultados = [p for p in paises if nombre in p["nombre"].lower()]
+    if resultados:
+        for p in resultados:
+            mostrar_pais(p)
+    else:
+        print("No se encontraron países con ese nombre.")
