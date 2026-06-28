@@ -105,3 +105,48 @@ def buscar_pais(paises):
             mostrar_pais(p)
     else:
         print("No se encontraron países con ese nombre.")
+
+# FUNCIONES DE FILTRO
+
+def filtrar_por_continente(paises):
+    """Filtra países por continente."""
+    print("\n--- FILTRAR POR CONTINENTE ---")
+    continente = input("Ingresá el continente: ").strip().lower()
+    resultados = [p for p in paises if p["continente"].lower() == continente]
+    if resultados:
+        for p in resultados:
+            mostrar_pais(p)
+    else:
+        print("No se encontraron países en ese continente.")
+
+
+def filtrar_por_poblacion(paises):
+    """Filtra países por rango de población."""
+    print("\n--- FILTRAR POR RANGO DE POBLACIÓN ---")
+    try:
+        minimo = int(input("Población mínima: "))
+        maximo = int(input("Población máxima: "))
+        resultados = [p for p in paises if minimo <= p["poblacion"] <= maximo]
+        if resultados:
+            for p in resultados:
+                mostrar_pais(p)
+        else:
+            print("No se encontraron países en ese rango.")
+    except ValueError:
+        print("Error: ingresá valores numéricos válidos.")
+
+
+def filtrar_por_superficie(paises):
+    """Filtra países por rango de superficie."""
+    print("\n--- FILTRAR POR RANGO DE SUPERFICIE ---")
+    try:
+        minimo = int(input("Superficie mínima (km²): "))
+        maximo = int(input("Superficie máxima (km²): "))
+        resultados = [p for p in paises if minimo <= p["superficie"] <= maximo]
+        if resultados:
+            for p in resultados:
+                mostrar_pais(p)
+        else:
+            print("No se encontraron países en ese rango.")
+    except ValueError:
+        print("Error: ingresá valores numéricos válidos.")
