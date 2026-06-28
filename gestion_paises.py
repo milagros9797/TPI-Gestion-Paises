@@ -203,3 +203,10 @@ def mostrar_estadisticas(paises):
         continentes[c] = continentes.get(c, 0) + 1
     for c, cantidad in sorted(continentes.items()):
         print(f"  {c}: {cantidad}")
+
+# FUNCIÓN AUXILIAR
+
+def mostrar_pais(pais):
+    """Muestra los datos de un país formateado."""
+    print(f"  Nombre: {pais['nombre']} | Población: {pais['poblacion']:,} | Superficie: {pais['superficie']:,} km² | Continente: {pais['continente']}")
+
