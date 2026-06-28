@@ -150,3 +150,29 @@ def filtrar_por_superficie(paises):
             print("No se encontraron países en ese rango.")
     except ValueError:
         print("Error: ingresá valores numéricos válidos.")
+
+# FUNCIONES DE ORDENAMIENTO
+
+def ordenar_paises(paises):
+    """Ordena países por nombre, población o superficie."""
+    print("\n--- ORDENAR PAÍSES ---")
+    print("1. Por nombre")
+    print("2. Por población")
+    print("3. Por superficie")
+    criterio = input("Elegí un criterio: ").strip()
+
+    if criterio not in ["1", "2", "3"]:
+        print("Opción inválida.")
+        return
+
+    print("1. Ascendente")
+    print("2. Descendente")
+    orden = input("Elegí el orden: ").strip()
+    descendente = orden == "2"
+
+    claves = {"1": "nombre", "2": "poblacion", "3": "superficie"}
+    clave = claves[criterio]
+
+    ordenados = sorted(paises, key=lambda p: p[clave], reverse=descendente)
+    for p in ordenados:
+        mostrar_pais(p)
