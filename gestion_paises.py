@@ -176,3 +176,30 @@ def ordenar_paises(paises):
     ordenados = sorted(paises, key=lambda p: p[clave], reverse=descendente)
     for p in ordenados:
         mostrar_pais(p)
+
+# FUNCIONES DE ESTADÍSTICAS
+
+def mostrar_estadisticas(paises):
+    """Muestra estadísticas generales de los países."""
+    print("\n--- ESTADÍSTICAS ---")
+    if not paises:
+        print("No hay países cargados.")
+        return
+
+    mayor_pob = max(paises, key=lambda p: p["poblacion"])
+    menor_pob = min(paises, key=lambda p: p["poblacion"])
+    promedio_pob = sum(p["poblacion"] for p in paises) // len(paises)
+    promedio_sup = sum(p["superficie"] for p in paises) // len(paises)
+
+    print(f"País con mayor población: {mayor_pob['nombre']} ({mayor_pob['poblacion']:,})")
+    print(f"País con menor población: {menor_pob['nombre']} ({menor_pob['poblacion']:,})")
+    print(f"Promedio de población: {promedio_pob:,}")
+    print(f"Promedio de superficie: {promedio_sup:,} km²")
+
+    print("\nCantidad de países por continente:")
+    continentes = {}
+    for p in paises:
+        c = p["continente"]
+        continentes[c] = continentes.get(c, 0) + 1
+    for c, cantidad in sorted(continentes.items()):
+        print(f"  {c}: {cantidad}")
