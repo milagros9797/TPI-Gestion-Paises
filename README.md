@@ -64,3 +64,7 @@ Al ejecutar el programa aparece un menu con opciones:
 - gestion_paises.py - codigo principal del programa
 - paises.csv - dataset base con informacion de paises
 - README.md - documentacion del proyecto
+
+## Links 
+pdf : https://github.com/milagros9797/TPI-Gestion-Paises/blob/main/tpi_programacion1-MilagrosHerrera.pdf
+video demostrativo : https://drive.google.com/file/d/1DjhrvCCUu0NsI16aH5kkWVxZp8foK01u/view
